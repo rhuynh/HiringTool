@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head><link href="style.css" rel="stylesheet" />
+  <script data-require="angular.js@1.2.0-rc1" data-semver="1.2.0-rc1" src="http://code.angularjs.org/1.2.0rc1/angular.js"></script>
+ <script src="https://cdn.firebase.com/v0/firebase.js"></script>
+  <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js"></script>
+</head>
+<body >
+  <div ng-controller='Ctrl'>
+  <h3>test</h3>
+  <button ng-click="addFruit({name:'testFruit'})">add</button>
+      <ul >
+        <li ng-repeat="fruit in fruits">
+        {{ fruit.name }}
+      <button ng-click="removeFruit(fruit)">remove</button>        
+        </li>
+      </ul>
+  </div>
+  
+  <script>
+    var app =  angular.module('app',['firebase']);
+    
+    app.controller('Ctrl', function($scope, angularFireCollection){
+      
+      var ref = new Firebase('https://sketch.firebaseio.com/fruits');
+      $scope.fruits = angularFireCollection(ref);
+      
+      $scope.addFruit = function(fruitObj){
+        $scope.fruits.add(fruitObj);
+      };
+      
+      $scope.removeFruit = function(fruitObj){
+        $scope.fruits.remove(fruitObj.$id);
+      };
+    });
+  </script>
+</body>
+</html>

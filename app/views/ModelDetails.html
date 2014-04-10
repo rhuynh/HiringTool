@@ -1,0 +1,77 @@
+<div class="container-fluid"><!-- ng-controller="modelDetailsCtrl" -->
+  <div class="row text-center">
+    <h2>{{model.name}}</h2>	
+  </div> 
+  <div class="row">
+  	<h3>Job Criterias</h3>
+  	<!-- <hr> -->
+  	<div class="form-horizontal">
+		<table class="table table-hover">
+		  <tr ng-repeat="criteria in model.criterias">
+		  	<td>{{$index+1}}) {{criteria.name}}</td>
+		  	<td>
+		  		<div class="col-xs-2 pull-right">
+		  		<input type="input" class="form-control input-sm" required ng-pattern="maxWeightValidation" placeholder="Weight" tooltip-placement="right" tooltip='On the scale of 1 to 5 how important is this skill?' ng-model="criteria.weight" value="{{criteria.weight}}">
+		  		</div>
+		  	</td>
+		  </tr>
+		</table>	
+  	</div>
+  </div>
+	
+  <div class="row">
+  	<div>
+  		<h3>Candidates <button class="btn btn-primary pull-right pull-right"  ng-click="candidateEditor()">Add</button></h3>
+  	</div>
+  	<hr>
+  	<div><!--  -->
+        <table class="table">
+        	<thead>
+        		<tr>
+        			<th>Candidates/Criterias</th>
+        			<th ng-repeat="criteria in model.criterias">
+        				<span class="class="hideOverflow"" tooltip-placement="top" tooltip="{{criteria.name}} ({{criteria.weight}})">{{criteria.name}}</span>
+        			</th>
+        			<th orderBy>Total</th>
+        		</tr>
+            </thead>
+            <tr ng-repeat="(id,candidate) in model.candidates">
+              <td>
+              <button type="button" class="btn btn-link" ng-click="candidateEditor(candidate,id);">{{candidate.name}}</button>
+              </td>
+              <td ng-repeat="skill in candidate.skills">
+                <div class="">
+                    <input type="input" class="form-control" required ng-pattern="" placeholder="score" ng-model="skill.score" value="{{skill.score}}">
+                </div>
+              </td>
+              <td>{{getRunningTotal(candidate)}}</td>
+            </tr>        	
+          <tfoot>
+            <tr>
+              <td><center><strong>Average</strong></center></td>
+              <td ng-repeat="skill in model.candidates">
+                  <center>{{getAverageTotal($index) | number:2}}</center>
+              </td>
+              <td><center>{{getRunningTotalAverage() | number:2}}</center></td>
+            </tr>
+          </tfoot>
+        </table>
+    </div>
+  </div>
+  <div class="row">
+    <div>
+      <h3>Report</h3>
+    </div>
+    <hr>
+      
+    <div google-chart="BarChart" load-data="getSkillsSummartChart()" ng-model="model.candidates" title="Skill Summery" width="100%" height="500"></div>    
+
+    <div google-chart="BarChart" load-data="getTotalScoreChart()" ng-model="model.candidates" title="Total Scores" width="100%" height="320"></div>
+
+    <div google-chart="ComboChart" load-data="getSalaryChart()" ng-model="model.candidates" title="Salary" width="100%" height="500"></div>
+
+    <div style="float:left" ng-repeat="skill in model.criterias">
+        <div style="float:left" google-chart="PieChart" load-data="getChartData($index)" ng-model="model.candidates" title="{{skill.name}}" width="500" height="450"></div>
+    </div>
+  </div>    
+</div>

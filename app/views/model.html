@@ -1,0 +1,48 @@
+<div>    
+    <div class="modal-header">
+        <h3>Model</h3>
+    </div>
+    <div class="modal-body">
+        <form class="form-horizontal" role="form" name="modelForm">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Job Title</label>
+            <div class="col-sm-10">
+              <input type="input" class="form-control" id="name" placeholder="Name" required ng-model="model.name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+              <input type="input" class="form-control" id="description" placeholder="Description" required ng-model="model.description">
+            </div>
+          </div>          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Criterias</label>
+          </div>   
+          <div ng-repeat="criteria in model.criterias">
+            <div class="form-group">
+              <div class="col-xs-7">
+                <input type="input" class="form-control" placeholder="Skill" value="{{criteria.name}}">
+              </div>
+              <div class="col-xs-3">
+                <input type="input" class="form-control" placeholder="Weight" required ng-pattern="maxWeightValidation" value="{{criteria.weight}}">
+              </div>
+              <button class="btn btn-danger" ng-click="removeCriteria(criteria);">Delete</button>
+            </div>
+          </div>         
+          <div class="form-group">            
+            <div class="col-xs-7">
+              <input type="input" class="form-control" id="skillName" ng-model="criteria.name" required placeholder="Skill">
+            </div>
+            <div class="col-xs-3">
+              <input type="input" class="form-control" id="skillWeight" ng-model="criteria.weight" required ng-pattern="maxWeightValidation" placeholder="Weight" tooltip='On the scale of 1 to 5 how important is this skill?'>
+            </div>
+            <button class="btn btn-success" ng-click="addCriteria(criteria);">Add</button>
+          </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</div>

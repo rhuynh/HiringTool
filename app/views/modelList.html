@@ -1,0 +1,26 @@
+<!-- Example row of columns -->
+<!-- Main component for a primary marketing message or call to action -->
+<div ng-controller="modelListCtrl">
+  <div class="panel panel-primary">
+    <div class="panel-heading" style="padding-bottom:15px;">
+      <strong>Models</strong>
+        <div class="pull-right">
+          <button type="button" class="btn btn-default btn-sm" ng-click="open()">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </div>
+    </div>
+    <ul class="list-group" ng-repeat="(id, model) in models">
+      <li class="list-group-item" style="padding-bottom:25px;">
+          <span>{{model.name}}</span>
+          <span>({{model.description}})</span>
+          <div class="pull-right">
+            <button class="btn btn-default" ng-click="details(id)">Details</button>
+            <button class="btn btn-default" ng-click="open(id)">Edit</button>
+            <button class="btn btn-default" ng-click="delete(id)">Remove</button>
+          </div>
+      </li>
+    </ul>      
+    <!-- <div class="panel-footer">Panel footer</div> -->    
+  </div>
+</div>
