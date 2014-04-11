@@ -18,8 +18,11 @@ app.directive("googleChart",function(){
 					if($attr.height)
 						options.height = $attr.height;
 					if($attr.googleChart === 'ComboChart'){// its 4 am, i'll just hardcode it for now.
-						options.seriesType = "bars";
-						options.series = {1: {type: "line"}}
+						options.seriesType = "line";
+						options.series = {
+							0:{targetAxisIndex:1}, 
+							1:{type:"bars",targetAxisIndex:0}
+						};
 					}
 		          	var googleChart = new google.visualization[$attr.googleChart]($elem[0]);
 		          	googleChart.draw(dt,options);
