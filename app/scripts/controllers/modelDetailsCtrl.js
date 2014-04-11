@@ -161,11 +161,17 @@ var editCandidateCtrl = function ($scope, $modalInstance, candidate, model, Mode
   $scope.isNew = false;
   if(!candidate){//if it is new candidate
   	$scope.isNew = true;
-	$scope.candidate = {};
+	$scope.candidate = {
+		skills: [],
+		salary: 0,
+		name: ''
+	};
+	/*
 	$scope.candidate.skills = [];  	
   	$scope.candidate.salary = 0;
   	$scope.candidate.name = "";  	
   	$scope.candidate.skills = [];  	
+  	*/
 	for (var i = 0; i < model.criterias.length; i++) {
 		 $scope.candidate.skills.push({"name":model.criterias[i].name,"score":""});
 	};
