@@ -1,5 +1,5 @@
-node_modules/
+# remove node_modules/ and delete grunt folders
+# node_modules/
 dist/
 .tmp/
 .sass-cache/
-app/bower_components/
