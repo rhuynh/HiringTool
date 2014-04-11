@@ -1,7 +1,9 @@
 {
-  "name": "HRAnalytics",
+  "name": "HiringTool",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "express": "~4.0.0"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",
@@ -37,6 +39,6 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "start": "node app.js"
   }
 }

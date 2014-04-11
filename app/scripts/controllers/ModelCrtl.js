@@ -4,7 +4,8 @@ app.controller("modelListCtrl", function($scope, $modal, $location, $firebase, M
   $scope.newItem = {};
   $scope.model = {};
   $scope.originalModel = {};
-  $scope.isNew = false;  
+  $scope.isNew = false;
+  $scope.maxWeightValidation = /^[1-5]$/;
 
   $scope.open = function (id) {
     $scope.model = id ? $scope.models[id] : {};
